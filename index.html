@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./styles/main.css">
+    <title>Catch random "Words"</title>
+</head>
+<body>
+    <header>
+        <div class="timer-and-score">
+            <h3 class="timer" id="timer" data-timeout="0">0:60⌛</h3>
+            <p class="score" id="score">score:0</p>
+        </div>
+    </header>
+    <section>
+        <div class="container">
+            <div class="box">
+                <div class="words-side">
+                    <p class="word" id="word"></p>
+                </div>
+                <textarea class="word-type" id="word-type" autofocus placeholder="type word..."></textarea>
+            </div>
+        </div>
+    </section>
+    <div class="intro" id="intro">
+        <h2 class="intro-title">Let's Play</h2>
+        <button class="intro-button" id="intro-button">Go</button>
+    </div>
+    <div class="pop-up-cont" id="pop-up-cont">
+        <div class="popup-box">
+            <h3 class="popup-title">Good job your score is</h3>
+            <p class="current-score" id="current-score">2</p>
+            <button class="replay" id="replay" onclick="replayGame()">🔥 Try again 🔥</button>
+        </div>
+    </div>
+
+    <script src="./app.js" defer></script>
+</body>
+</html>

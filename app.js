@@ -5,6 +5,7 @@ const introButton = document.getElementById('intro-button');
 const timer = document.getElementById('timer');
 const score = document.getElementById('score');
 const popUp = document.getElementById('pop-up-cont');
+const sound = document.getElementById('sound');
 const URL = "https://random-words-api.vercel.app/word";
 let time = 60;
 let scoreIncrement = 0;
@@ -46,14 +47,23 @@ introButton.addEventListener('click', () => {
     let Interval = setInterval(() => {
         timer.innerHTML = `0:${time}⌛`;
         time--;
+        // sound restart
+        audioSource()
         // checking if timer is less then 0
         if (time < 0) {
             popUp.style.animation = "popup 0.75s ease forwards";
             popUp.style.display = "flex";
             clearInterval(Interval)
+            sound.paused()
         }
     },1000);
 })
+
+const audioSource = () => {
+    sound.play();
+    Math.floor(sound.currentTime) === 30 ? sound.currentTime = 0 : null;
+}
+
 // fetching url which generate random world
 function fetchUrl() {
     return fetch(URL)

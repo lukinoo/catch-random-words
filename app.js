@@ -6,6 +6,7 @@ const timer = document.getElementById('timer');
 const score = document.getElementById('score');
 const popUp = document.getElementById('pop-up-cont');
 const sound = document.getElementById('sound');
+const correctSound = document.getElementById('sound2');
 const URL = "https://random-words-api.vercel.app/word";
 let time = 60;
 let scoreIncrement = 0;
@@ -37,8 +38,13 @@ textArea.addEventListener('keyup',() => {
     // checking if random word is correct then call's nextWordGenerate function
     if (state) {
         nextWordGenerate()
+        correctWordSound()
     }
 })
+// correct word sound effect function
+function correctWordSound () {
+    correctSound.play();
+}
 
 // when this function event done timer start's decresing
 introButton.addEventListener('click', () => {
@@ -54,14 +60,13 @@ introButton.addEventListener('click', () => {
             popUp.style.animation = "popup 0.75s ease forwards";
             popUp.style.display = "flex";
             clearInterval(Interval)
-            sound.paused()
         }
     },1000);
 })
 
 const audioSource = () => {
     sound.play();
-    Math.floor(sound.currentTime) === 30 ? sound.currentTime = 0 : null;
+    Math.floor(sound.currentTime) === 29 ? sound.currentTime = 0 : null;
 }
 
 // fetching url which generate random world

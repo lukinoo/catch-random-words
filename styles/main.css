@@ -82,6 +82,7 @@ body {
   border-radius: 5px;
   outline: none;
   resize: none;
+  text-align: center;
 }
 
 .container .box .word {

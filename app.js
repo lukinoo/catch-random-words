@@ -10,29 +10,33 @@ const URL = "https://random-words-api.vercel.app/word";
 let time = 60;
 let scoreIncrement = 0;
 
-textArea.addEventListener('keyup',() => {
+textArea.addEventListener('keyup', (e) => {
+    if (e.keyCode === 13) {
+        e.preventDefault();
+        return false;
+    }
     const spanWords = document.querySelectorAll('span');
     const textAreaValue = textArea.value.split("");
-    let state = true; 
+    let state = true;
     // characters looping here and creating span for wordOption function
-    spanWords.forEach((eachSpan,index) => {
+    spanWords.forEach((eachSpan, index) => {
         const chars = textAreaValue[index];
-        wordsOption(eachSpan,chars)
+        wordsOption(eachSpan, chars)
     })
     // function which indicates characters is correct or NOT
-    function wordsOption(spancharacters,textareachars) { 
+    function wordsOption(spancharacters, textareachars) {
         if (textareachars == null) {
             spancharacters.classList.remove('correct')
             spancharacters.classList.remove('incorrect')
             state = false
-          } else if (textareachars === spancharacters.innerHTML) {
+        } else if (textareachars === spancharacters.innerHTML) {
             spancharacters.classList.add('correct')
             spancharacters.classList.remove('incorrect')
-          } else {
+        } else {
             spancharacters.classList.remove('correct')
             spancharacters.classList.add('incorrect')
             state = false
-          }
+        }
     }
     // checking if random word is correct then call's nextWordGenerate function
     if (state) {
@@ -42,6 +46,7 @@ textArea.addEventListener('keyup',() => {
 
 // when this function event done timer start's decresing
 introButton.addEventListener('click', () => {
+    nextWordGenerate();
     const intro = document.getElementById('intro');
     intro.classList.add('intro-transform')
     let Interval = setInterval(() => {
@@ -56,7 +61,7 @@ introButton.addEventListener('click', () => {
             sound.pause();
             clearInterval(Interval)
         }
-    },1000);
+    }, 1000);
 })
 
 const audioSource = () => {
@@ -68,7 +73,7 @@ const audioSource = () => {
 function fetchUrl() {
     return fetch(URL)
         .then(res => res.json())
-        .then(Data => Data[Math.floor(Math.random()*Data.length)])
+        .then(Data => Data[Math.floor(Math.random() * Data.length)])
 }
 
 async function nextWordGenerate() {
@@ -99,5 +104,3 @@ function popuptext(score) {
 function replayGame() {
     window.location = "index.html";
 }
-
-nextWordGenerate();
